@@ -1,12 +1,12 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row justify="center" align="center" class="abs">
     <v-col cols="12" sm="8" md="6">
       <v-card class="logo py-4 d-flex justify-center">
         <NuxtLogo />
         <VuetifyLogo />
       </v-card>
       <v-card>
-        <v-card-title class="headline">
+        <v-card-title class="headline less-test">
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
         <v-card-text>
@@ -81,3 +81,11 @@ export default {
   name: 'IndexPage'
 }
 </script>
+
+<style lang="less">
+.abs{
+  .less-test{
+    color:red;
+  }
+}
+</style>
