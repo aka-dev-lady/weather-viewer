@@ -44,14 +44,6 @@
       <v-list-item-subtitle>48%</v-list-item-subtitle>
     </v-list-item>
 
-    <v-slider
-      v-model="time"
-      :max="6"
-      :tick-labels="labels"
-      class="mx-4"
-      ticks
-    ></v-slider>
-
     <v-list class="transparent">
       <v-list-item
         v-for="item in forecast"
@@ -83,7 +75,6 @@
   export default {
     data () {
       return {
-        labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
         time: 0,
         forecast: [
           { day: 'Tuesday', icon: 'mdi-white-balance-sunny', temp: '24\xB0/12\xB0' },

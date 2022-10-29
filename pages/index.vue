@@ -1,91 +1,64 @@
 <template>
-  <v-row justify="center" align="center" class="abs">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline less-test">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+<v-card
+    class="mx-auto"
+    max-width="400"
+  >
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title class="text-h5">
+          San Francisco
+        </v-list-item-title>
+        <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-card-text>
+      <v-row align="center">
+        <v-col
+          class="text-h2"
+          cols="6"
+        >
+          23&deg;C
+        </v-col>
+        <v-col cols="6">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sun.png"
+            alt="Sunny image"
+            width="92"
+          ></v-img>
+        </v-col>
+      </v-row>
+    </v-card-text>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-send</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-cloud-download</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>48%</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-divider></v-divider>
+
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data () {
+      return {
+        time: 0
+      }
+    }
 }
 </script>
 
-<style lang="less">
-.abs{
-  .less-test{
-    color:red;
-  }
-}
+<style>
 </style>
