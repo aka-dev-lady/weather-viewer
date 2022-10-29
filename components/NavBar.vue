@@ -16,6 +16,24 @@
 
     <v-spacer></v-spacer>
 
+    <v-overflow-btn
+      class="my-2"
+      :items="dropdown_font"
+      menu-props="top"
+      label="Overflow Btn w/ menu-props"
+      target="#dropdown-example-1"
+    ></v-overflow-btn>
+
+    <v-spacer></v-spacer>
+
+    <v-text-field
+      label="Outline"
+      single-line
+      outline
+    ></v-text-field>
+
+    <v-spacer></v-spacer>
+
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn text>
         Today
@@ -41,10 +59,12 @@
 
 <script>
 export default {
-
+  data: () => ({
+      dropdown_font: ['London', 'Paris', 'Kyiv', 'Berlin'],
+    }),
 }
 </script>
 
-<style lang="scss">
-	@import "@/assets/variables.scss";
+<style scoped>
+
 </style>
