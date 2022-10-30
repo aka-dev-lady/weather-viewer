@@ -1,7 +1,6 @@
 <template>
   <v-app dark>
 <NavBar />
-
     <main>
       <div class="container" align="center">
         <nuxt />

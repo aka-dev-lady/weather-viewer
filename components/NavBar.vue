@@ -22,7 +22,7 @@
     <v-overflow-btn
       @change="value => onCityChange(value)"
       class="my-2"
-      :items="dropdown_cities"
+      :items="cities"
       menu-props="top"
       label="City"
       target="#dropdown"
@@ -59,7 +59,7 @@
 <script>
 export default {
   data: () => ({
-      dropdown_cities: ['London', 'Paris', 'Kiev', 'Berlin'],
+      cities: ['London', 'Paris', 'Kiev', 'Berlin'],
     }),
   methods: {
     onCityChange(city) {
