@@ -5,6 +5,8 @@
   >
     <v-toolbar-title>Weather-viewer</v-toolbar-title>
 
+    <v-spacer></v-spacer>
+
     <v-divider
       class="mx-4"
       vertical
@@ -12,17 +14,20 @@
 
     <v-spacer></v-spacer>
 
-    <span class="subheading">My Home</span>
+    <span class="subheading">My City</span>
 
     <v-spacer></v-spacer>
 
+    <v-container id="dropdown">
     <v-overflow-btn
+      @change="value => onCityChange(value)"
       class="my-2"
-      :items="dropdown_font"
+      :items="dropdown_cities"
       menu-props="top"
-      label="Overflow Btn w/ menu-props"
-      target="#dropdown-example-1"
+      label="City"
+      target="#dropdown"
     ></v-overflow-btn>
+    </v-container>
 
     <v-spacer></v-spacer>
 
@@ -36,19 +41,13 @@
 
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn text>
-        Today
+        SUN
       </v-btn>
 
       <v-divider vertical></v-divider>
 
       <v-btn text>
-        Tomorrow
-      </v-btn>
-
-      <v-divider vertical></v-divider>
-
-      <v-btn text>
-        Day after tomorrow
+        MOON
       </v-btn>
 
       <v-divider vertical></v-divider>
@@ -60,8 +59,19 @@
 <script>
 export default {
   data: () => ({
-      dropdown_font: ['London', 'Paris', 'Kyiv', 'Berlin'],
+      dropdown_cities: ['London', 'Paris', 'Kiev', 'Berlin'],
     }),
+  methods: {
+    onCityChange(city) {
+      this.$axios.request({
+        params: {q: city, days: '3'}
+      })
+      .then(res => console.log(res.data))
+      .catch(function (error) {
+        console.error(error);
+      })
+    }
+  }
 }
 </script>
 

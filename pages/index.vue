@@ -6,7 +6,7 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
-          San Francisco
+          {{city}}
         </v-list-item-title>
         <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
       </v-list-item-content>
@@ -54,12 +54,13 @@ export default {
   name: 'IndexPage',
   data () {
       return {
-        time: 0
+        time: 0,
+        city: 'San Francisco'
       }
     }
 }
 </script>
 
-<style lang="scss">
-	@import "@/assets/variables.scss";
+<style>
+
 </style>

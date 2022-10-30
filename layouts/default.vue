@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <NavBar />
+  <v-app dark>
+<NavBar />
 
     <main>
       <div class="container" align="center">
         <nuxt />
       </div>
     </main>
-  </div>
+</v-app>
+
 
 </template>
 
