@@ -10,39 +10,45 @@
 
     <v-spacer></v-spacer>
 
-    <span class="subheading">My City</span>
-
-    <v-spacer></v-spacer>
-
-    <v-container id="dropdown">
-      <v-overflow-btn
-        @change="value => onCityChange(value)"
-        class="my-2"
-        :items="cities"
-        menu-props="top"
-        label="City"
-        target="#dropdown"
-      ></v-overflow-btn>
-    </v-container>
-
-    <v-spacer></v-spacer>
-
     <v-text-field
-      label="Outline"
+      label="Enter city"
       single-line
       outline
     ></v-text-field>
 
     <v-spacer></v-spacer>
 
+    <v-container id="dropdown">
+      <v-overflow-btn
+        @change="value => onCityChange(value) "
+        class="my-2"
+        :items="cities"
+        menu-props="top"
+        label="Choose city"
+        target="#dropdown"
+      ></v-overflow-btn>
+    </v-container>
+
+    <v-spacer></v-spacer>
+
+    <span class="subheading">{{randomCity}}</span>
+
+    <v-spacer></v-spacer>
+
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn text>
-        Today
+        Weather
+        <br />
+        Tomorrow
       </v-btn>
 
       <v-spacer></v-spacer>
 
       <v-btn text>
+        Weather
+        <br />
+        After
+        <br />
         Tomorrow
       </v-btn>
 
@@ -55,10 +61,27 @@
 <script>
 export default {
   data: () => ({
-      cities: ['London', 'Paris', 'Kiev', 'Berlin'],
+      cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Roma'],
+      city: ''
     }),
+  computed: {
+    randomCity() {
+    const rand = Math.floor(Math.random()*this.cities.length);
+    const city = this.cities[rand];
+    if(this.city === ''){
+      this.city = city;
+    }
+    return this.city
+  }
+  },
   methods: {
+    getCity() {
+      console.log(this.city)
+      return this.city
+    },
     onCityChange(city) {
+      this.city = city;
+      console.log(this.city);
       this.$axios.request({
         params: {q: city, days: '3'}
       })
