@@ -1,8 +1,8 @@
 <template>
   <v-app dark>
-<NavBar />
-    <main>
-      <div class="container" align="center">
+    <NavBar />
+    <main align="center">
+      <div class="container">
         <nuxt />
       </div>
     </main>

@@ -29,5 +29,7 @@ export const actions = {
 
 export const getters = {
   cities: s => s.cities,
-  city: state.city
+  getCity() {
+    return state.city
+  }
 }

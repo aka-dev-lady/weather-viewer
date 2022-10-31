@@ -1,16 +1,12 @@
 <template>
+  <v-card
+    color="grey lighten-4"
+  >
   <v-toolbar
-    color="purple"
+    color="blue"
     dark
   >
     <v-toolbar-title>Weather-viewer</v-toolbar-title>
-
-    <v-spacer></v-spacer>
-
-    <v-divider
-      class="mx-4"
-      vertical
-    ></v-divider>
 
     <v-spacer></v-spacer>
 
@@ -19,14 +15,14 @@
     <v-spacer></v-spacer>
 
     <v-container id="dropdown">
-    <v-overflow-btn
-      @change="value => onCityChange(value)"
-      class="my-2"
-      :items="cities"
-      menu-props="top"
-      label="City"
-      target="#dropdown"
-    ></v-overflow-btn>
+      <v-overflow-btn
+        @change="value => onCityChange(value)"
+        class="my-2"
+        :items="cities"
+        menu-props="top"
+        label="City"
+        target="#dropdown"
+      ></v-overflow-btn>
     </v-container>
 
     <v-spacer></v-spacer>
@@ -41,19 +37,19 @@
 
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn text>
-        SUN
+        Today
       </v-btn>
 
-      <v-divider vertical></v-divider>
+      <v-spacer></v-spacer>
 
       <v-btn text>
-        MOON
+        Tomorrow
       </v-btn>
 
-      <v-divider vertical></v-divider>
     </v-toolbar-items>
 
   </v-toolbar>
+</v-card>
 </template>
 
 <script>
@@ -76,5 +72,7 @@ export default {
 </script>
 
 <style scoped>
-
+#dropdown {
+  width: 300px;
+}
 </style>

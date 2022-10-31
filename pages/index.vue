@@ -57,6 +57,11 @@ export default {
         time: 0,
         city: 'San Francisco'
       }
+    },
+    computed: {
+      getCity() {
+        return this.$store.getters['getCity']
+      }
     }
 }
 </script>
