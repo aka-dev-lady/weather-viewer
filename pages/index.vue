@@ -54,17 +54,44 @@ export default {
   name: 'IndexPage',
   data () {
       return {
-       city: ''
+       city: '',
+       isCurrentCity: false,
+       weather: {}
     }
   },
   mounted() {
-    this.$store.dispatch('context/initCurrentCity')
+    this.$store.dispatch('context/initCurrentCity');
+  },
+  watch: {
+    isCurrentCity() {
+      if(this.isCurrentCity) {
+        if(!!this.city) {
+          this.weatherChange(this.city);
+        }
+        this.isCurrentCity = false;
+      }
+    }
   },
   computed: {
     currentCity () {
-      this.city = this.$store.getters['context/getCity']
+      this.city = this.$store.getters['context/getCity'];
+      this.isCurrentCity = true;
       return this.city
     }
+  },
+  methods: {
+    weatherChange(city) {
+      this.$axios.request({
+              params: {q: city, days: '3'}
+            })
+            .then(res => {
+              this.weather = res.data;
+              console.log(this.weather);
+            })
+            .catch(function (error) {
+              console.error(error);
+            })
+    },
   }
 }
 </script>

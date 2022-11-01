@@ -1,5 +1,5 @@
 export const state = () => ({
-  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Roma'],
+  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Roma', 'Dnipropetrovsk'],
   city: ''
 })
 

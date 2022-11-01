@@ -22,16 +22,12 @@
       <v-overflow-btn
         @change="value => onCityChange(value) "
         class="my-2"
-        :items="cities"
+        :items="currentCities"
         menu-props="top"
         label="Choose city"
         target="#dropdown"
       ></v-overflow-btn>
     </v-container>
-
-    <v-spacer></v-spacer>
-
-    <span class="subheading">{{currentCity}}</span>
 
     <v-spacer></v-spacer>
 
@@ -61,30 +57,19 @@
 <script>
 export default {
   data: () => ({
-      cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Roma'],
-      city: ''
+
     }),
     mounted() {
-    this.$store.dispatch('context/initCurrentCity')
+    // this.$store.dispatch('context/initCurrentCity')
   },
   computed: {
-    currentCity () {
-      this.city = this.$store.getters['context/getCity']
-      return this.city
+    currentCities() {
+      return this.$store.getters['context/cities']
     }
   },
   methods: {
-    weatherChange(city) {
-      this.$axios.request({
-              params: {q: city, days: '3'}
-            })
-            .then(res => console.log(res.data))
-            .catch(function (error) {
-              console.error(error);
-            })
-    },
     onCityChange(city) {
-      this.$store.dispatch('context/initCurrentCity', city)
+      this.$store.dispatch('context/setCurrentCity', city)
     }
   }
 }
