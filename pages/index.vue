@@ -6,7 +6,7 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
-          {{city}}
+          {{currentCity}}
         </v-list-item-title>
         <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
       </v-list-item-content>
@@ -54,15 +54,18 @@ export default {
   name: 'IndexPage',
   data () {
       return {
-        time: 0,
-        city: 'San Francisco'
-      }
-    },
-    computed: {
-      getCity() {
-        return this.$store.getters['getCity']
-      }
+       city: ''
     }
+  },
+  mounted() {
+    this.$store.dispatch('context/initCurrentCity')
+  },
+  computed: {
+    currentCity () {
+      this.city = this.$store.getters['context/getCity']
+      return this.city
+    }
+  }
 }
 </script>
 

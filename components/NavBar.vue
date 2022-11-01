@@ -31,7 +31,7 @@
 
     <v-spacer></v-spacer>
 
-    <span class="subheading">{{randomCity}}</span>
+    <span class="subheading">{{currentCity}}</span>
 
     <v-spacer></v-spacer>
 
@@ -64,31 +64,27 @@ export default {
       cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Roma'],
       city: ''
     }),
+    mounted() {
+    this.$store.dispatch('context/initCurrentCity')
+  },
   computed: {
-    randomCity() {
-    const rand = Math.floor(Math.random()*this.cities.length);
-    const city = this.cities[rand];
-    if(this.city === ''){
-      this.city = city;
+    currentCity () {
+      this.city = this.$store.getters['context/getCity']
+      return this.city
     }
-    return this.city
-  }
   },
   methods: {
-    getCity() {
-      console.log(this.city)
-      return this.city
+    weatherChange(city) {
+      this.$axios.request({
+              params: {q: city, days: '3'}
+            })
+            .then(res => console.log(res.data))
+            .catch(function (error) {
+              console.error(error);
+            })
     },
     onCityChange(city) {
-      this.city = city;
-      console.log(this.city);
-      this.$axios.request({
-        params: {q: city, days: '3'}
-      })
-      .then(res => console.log(res.data))
-      .catch(function (error) {
-        console.error(error);
-      })
+      this.$store.dispatch('context/initCurrentCity', city)
     }
   }
 }
