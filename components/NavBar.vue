@@ -20,7 +20,7 @@
 
     <v-container id="dropdown">
       <v-overflow-btn
-        @change="value => onCityChange(value) "
+        @change="onCityChange"
         class="my-2"
         :items="currentCities"
         menu-props="top"
@@ -56,12 +56,6 @@
 
 <script>
 export default {
-  data: () => ({
-
-    }),
-    mounted() {
-    // this.$store.dispatch('context/initCurrentCity')
-  },
   computed: {
     currentCities() {
       return this.$store.getters['context/cities']
