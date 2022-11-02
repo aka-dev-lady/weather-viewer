@@ -1,32 +1,47 @@
+import ServiceRequest from '../services/serviceRequest.js';
 export const state = () => ({
   cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk'],
-  city: ''
+  city: '',
+  weather: {}
 })
 
 export const mutations = {
-  initCity(state, city) {
-    state.city = city
-  },
   setCity(state, currentCity) {
-    state.city = currentCity
+    state.city = currentCity;
+  },
+  setWeather(state, currentWeather) {
+    state.weather = currentWeather || {};
   }
 }
 
 export const actions = {
-  initCurrentCity({commit}) {
-      const rand = Math.floor(Math.random()*this.getters['context/cities'].length);
-      const city = this.getters['context/cities'][rand];
-    commit('initCity', city)
+  initCurrentCity({commit, getters, dispatch}) {
+    const cities = getters.cities;
+    const rand = Math.floor(Math.random()*cities.length);
+    const city = cities[rand];
+    commit('setCity', city)
+    dispatch('setWeather', city)
   },
-  setCurrentCity({commit}, currentCity) {
-
+  setCurrentCity({commit, dispatch}, currentCity) {
     commit('setCity', currentCity)
+    dispatch('setWeather', currentCity)
+  },
+  async setWeather({commit}, currentCity) {
+    const currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
+    console.log(currentWeather);
+    commit('setWeather', currentWeather);
   }
 }
 
 export const getters = {
-    cities: s => s.cities,
-    getCity(state) {
-      return state.city
+  cities: s => s.cities,
+  getCity(state) {
+    return state.city
+  },
+  getWeather(state) {
+    return state.weather || {}
+  },
+  getWeatherIconUrl(state) {
+    return state.weather.current?.condition?.icon ? `https:${state.weather.current?.condition?.icon}` : "#"
   }
 }
