@@ -16,20 +16,25 @@ export const mutations = {
 
 export const actions = {
   initCurrentCity({commit, getters, dispatch}) {
+    const myLocation = window.localStorage.getItem('myLocation');
     const cities = getters.cities;
     const rand = Math.floor(Math.random()*cities.length);
-    const city = cities[rand];
-    commit('setCity', city)
-    dispatch('setWeather', city)
+    const city = myLocation || cities[rand];
+    commit('setCity', city);
+    dispatch('setWeather', city);
   },
   setCurrentCity({commit, dispatch}, currentCity) {
-    commit('setCity', currentCity)
-    dispatch('setWeather', currentCity)
+    commit('setCity', currentCity);
+    dispatch('setWeather', currentCity);
   },
   async setWeather({commit}, currentCity) {
     const currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
     console.log(currentWeather);
     commit('setWeather', currentWeather);
+  },
+  setMyLocationToLocalStorage({dispatch}, nameLocation) {
+    window.localStorage.setItem('myLocation', nameLocation);
+    dispatch('setCurrentCity', nameLocation)
   }
 }
 

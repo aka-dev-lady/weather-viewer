@@ -26,7 +26,7 @@
         <v-col cols="6">
           <v-img
             :src="weatherIconUrl"
-            alt="Sunny image"
+            alt="Image"
             width="92"
           ></v-img>
         </v-col>
@@ -57,7 +57,7 @@ export default {
   name: 'IndexPage',
   data () {
       return {
-       city: 'Warsaw'
+
     }
   },
   mounted() {

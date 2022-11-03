@@ -10,11 +10,52 @@
 
     <v-spacer></v-spacer>
 
-    <v-text-field
-      label="Enter city"
-      single-line
-      outline
-    ></v-text-field>
+    <template>
+      <v-row justify="center">
+        <v-dialog
+          v-model="dialog"
+          persistent
+          max-width="600px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Set My Location
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">My Location</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container id="dropdown">
+                <v-overflow-btn
+                  @change="setMyLocationToLocalStorage"
+                  class="my-2"
+                  :items="currentCities"
+                  label="Choose location"
+                  target="#dropdown"
+                ></v-overflow-btn>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="dialog = false"
+              >
+                Close
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
 
     <v-spacer></v-spacer>
 
@@ -56,6 +97,9 @@
 
 <script>
 export default {
+  data: () => ({
+      dialog: false,
+    }),
   computed: {
     currentCities() {
       return this.$store.getters['context/cities']
@@ -64,6 +108,9 @@ export default {
   methods: {
     onCityChange(city) {
       this.$store.dispatch('context/setCurrentCity', city)
+    },
+    setMyLocationToLocalStorage(city) {
+      this.$store.dispatch('context/setMyLocationToLocalStorage', city)
     }
   }
 }
