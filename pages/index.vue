@@ -9,7 +9,7 @@
           {{currentCity}}
         </v-list-item-title>
         <v-list-item-subtitle>
-          {{weather?.location?.localtime}},
+          {{weather?.location?.localtime}}
           {{weather?.current?.condition.text}}
           </v-list-item-subtitle>
       </v-list-item-content>
@@ -54,12 +54,6 @@
 
 <script>
 export default {
-  name: 'IndexPage',
-  data () {
-      return {
-
-    }
-  },
   mounted() {
     this.$store.dispatch('context/initCurrentCity');
   },
@@ -76,7 +70,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

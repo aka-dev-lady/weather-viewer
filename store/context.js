@@ -1,6 +1,6 @@
 import ServiceRequest from '../services/serviceRequest.js';
 export const state = () => ({
-  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk'],
+  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk', 'Prague', 'Sofia', 'Washington', 'Warsaw'],
   city: '',
   weather: {}
 })
