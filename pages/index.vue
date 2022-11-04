@@ -9,7 +9,7 @@
           {{currentCity}}
         </v-list-item-title>
         <v-list-item-subtitle>
-          {{weather?.location?.localtime}}
+          {{weather?.current?.last_updated}}
           {{weather?.current?.condition.text}}
           </v-list-item-subtitle>
       </v-list-item-content>

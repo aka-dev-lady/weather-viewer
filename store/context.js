@@ -16,11 +16,13 @@ export const mutations = {
 
 export const actions = {
   initCurrentCity({getters, dispatch}) {
-    const myLocation = window.localStorage.getItem('myLocation');
-    const cities = getters.cities;
-    const rand = Math.floor(Math.random()*cities.length);
-    const city = myLocation || cities[rand];
-    dispatch('setCurrentCity', city)
+    let myLocation = window.localStorage.getItem('myLocation');
+    if(!myLocation) {
+      const cities = getters.cities;
+      const rand = Math.floor(Math.random()*cities.length);
+      myLocation = cities[rand];
+    }
+    dispatch('setCurrentCity', myLocation)
   },
   setCurrentCity({commit, dispatch}, currentCity) {
     commit('setCity', currentCity);
@@ -29,17 +31,17 @@ export const actions = {
   async setWeather({commit}, currentCity) {
     try{
       let currentWeather;
-      const time = new Date().getUTCHours();
-      const timeRequest = window.localStorage.getItem(`timeRequest${currentCity}`);
+      const time = Date.now();
+      const timeRequest = window.localStorage.getItem(currentCity);
       const timeDifference = time - timeRequest;
-      if(timeRequest && (timeDifference === 0)){
+      if(timeRequest && (timeDifference <= 3600000)){
         currentWeather = JSON.parse(window.localStorage.getItem(`lastRequest${currentCity}`));
         console.log(currentWeather);
       } else {
         currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
         console.log(currentWeather);
         window.localStorage.setItem(`lastRequest${currentCity}`, JSON.stringify(currentWeather));
-        window.localStorage.setItem(`timeRequest${currentCity}`, time);
+        window.localStorage.setItem(currentCity, time);
       }
       commit('setWeather', currentWeather);
     }catch(error) {
