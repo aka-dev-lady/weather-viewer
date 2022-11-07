@@ -1,6 +1,6 @@
 import ServiceRequest from '../services/serviceRequest.js';
 export const state = () => ({
-  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk', 'Prague', 'Sofia', 'Washington', 'Warsaw'],
+  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk', 'Prague', 'Sofia', 'Warsaw'],
   city: '',
   weather: {}
 })
@@ -18,9 +18,19 @@ export const actions = {
   initCurrentCity({getters, dispatch}) {
     let myLocation = window.localStorage.getItem('myLocation');
     if(!myLocation) {
-      const cities = getters.cities;
-      const rand = Math.floor(Math.random()*cities.length);
+      const rand = Math.floor(Math.random()*getters.cities.length);
       myLocation = cities[rand];
+    }
+    const time = Date.now();
+    for(let key of getters.cities) {
+      const timeRequest = window.localStorage.getItem(key);
+      if(timeRequest) {
+        const timeDifference = time - timeRequest;
+        if(timeDifference >= 3600000) {
+          window.localStorage.removeItem(key);
+          window.localStorage.removeItem(`lastRequest${key}`)
+        }
+      }
     }
     dispatch('setCurrentCity', myLocation)
   },
@@ -34,12 +44,11 @@ export const actions = {
       const time = Date.now();
       const timeRequest = window.localStorage.getItem(currentCity);
       const timeDifference = time - timeRequest;
-      if(timeRequest && (timeDifference <= 3600000)){
+      if(timeRequest && (timeDifference < 3600000)){
         currentWeather = JSON.parse(window.localStorage.getItem(`lastRequest${currentCity}`));
         console.log(currentWeather);
       } else {
         currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
-        console.log(currentWeather);
         window.localStorage.setItem(`lastRequest${currentCity}`, JSON.stringify(currentWeather));
         window.localStorage.setItem(currentCity, time);
       }

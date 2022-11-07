@@ -1,15 +1,14 @@
 <template>
   <v-card
-    color="grey lighten-4"
+    color="indigo lighten-4"
   >
+  <v-card-title class="justify-center">Weather-viewer</v-card-title>
   <v-toolbar
-    color="blue"
+    color="indigo"
     dark
   >
-    <v-toolbar-title>Weather-viewer</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
+    <v-toolbar-title>Location selection</v-toolbar-title>
+<v-spacer></v-spacer>
       <template>
         <v-row justify="center">
           <v-dialog
@@ -57,38 +56,39 @@
         </v-row>
       </template>
 
-      <v-spacer></v-spacer>
-
-      <v-container id="dropdown">
+<v-spacer></v-spacer>
+      <v-container id="dropdown" >
         <v-overflow-btn
           @change="onCityChange"
           class="my-2"
           :items="currentCities"
           menu-props="top"
-          label="Choose city"
+          label="Weather in cities"
           target="#dropdown"
         ></v-overflow-btn>
       </v-container>
-
+      </v-toolbar>
+      <v-toolbar color="blue">
+      <v-toolbar-title>Weather selection</v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items >
         <v-btn text>
-          Weather
-          <br />
-          Tomorrow
+          <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/">
+          Today
+        </nuxt-link>
         </v-btn>
-
         <v-spacer></v-spacer>
-
         <v-btn text>
-          Weather
-          <br />
-          After
-          <br />
-          Tomorrow
+          <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/hourly">
+          Hourly
+        </nuxt-link>
         </v-btn>
-
+        <v-spacer></v-spacer>
+        <v-btn text>
+          <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/weekly">
+            Weekly
+        </nuxt-link>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </v-card>

@@ -1,7 +1,7 @@
 <template>
 <v-card
     class="mx-auto"
-    max-width="400"
+    max-width="450"
   >
     <v-list-item two-line>
       <v-list-item-content>
@@ -11,7 +11,7 @@
         <v-list-item-subtitle>
           {{weather?.current?.last_updated}}
           {{weather?.current?.condition.text}}
-          </v-list-item-subtitle>
+        </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -27,7 +27,7 @@
           <v-img
             :src="weatherIconUrl"
             alt="Image"
-            width="92"
+            width="100"
           ></v-img>
         </v-col>
       </v-row>
