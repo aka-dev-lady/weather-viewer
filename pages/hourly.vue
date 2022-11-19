@@ -10,7 +10,7 @@
         </v-list-item-title>
         <v-list-item-subtitle>
           {{weather?.forecast?.forecastday['0'].date}}
-          {{weather?.forecast?.forecastday['0'].day.condition.text}}
+          hourly weather
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
