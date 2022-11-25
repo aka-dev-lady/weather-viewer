@@ -16,10 +16,13 @@ export const mutations = {
 
 export const actions = {
   initCurrentCity({getters, dispatch}) {
-    let myLocation = window.localStorage.getItem('myLocation');
+    let myLocation = window.sessionStorage.getItem('sessionLocation');
+    if(!myLocation) {
+      myLocation = window.localStorage.getItem('myLocation');
+    }
     if(!myLocation) {
       const rand = Math.floor(Math.random()*getters.cities.length);
-      myLocation = cities[rand];
+      myLocation = getters.cities[rand];
     }
     const time = Date.now();
     for(let key of getters.cities) {
@@ -35,6 +38,7 @@ export const actions = {
     dispatch('setCurrentCity', myLocation)
   },
   setCurrentCity({commit, dispatch}, currentCity) {
+    window.sessionStorage.setItem('sessionLocation', currentCity);
     commit('setCity', currentCity);
     dispatch('setWeather', currentCity);
   },

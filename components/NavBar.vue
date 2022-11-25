@@ -2,19 +2,17 @@
   <v-card
     color="indigo lighten-4"
   >
-  <v-card-title class="justify-center">Weather-viewer</v-card-title>
+  <v-card-title class="justify-center text-h2">Weather-viewer</v-card-title>
   <v-toolbar
     color="indigo"
     dark
   >
-    <v-toolbar-title>Location selection</v-toolbar-title>
-<v-spacer></v-spacer>
-      <template>
+    <v-toolbar-title>Location</v-toolbar-title>
         <v-row justify="center">
           <v-dialog
             v-model="dialog"
             persistent
-            max-width="600px"
+            max-width="450px"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -54,77 +52,27 @@
             </v-card>
           </v-dialog>
         </v-row>
-      </template>
-
-<v-spacer></v-spacer>
-<template>
-        <v-row justify="center">
-          <v-dialog
-            v-model="dialog"
-            persistent
-            max-width="600px"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="primary"
-                dark
-                v-bind="attrs"
-                v-on="on"
-              >
-              Weather in cities
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">City selection</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container id="dropdown" >
-                  <v-overflow-btn
-                    @change="onCityChange"
-                    class="my-2"
-                    :items="currentCities"
-                    menu-props="top"
-                    label="Select city"
-                    target="#dropdown"
-                  ></v-overflow-btn>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="changeDialog"
-                >
-                  Close
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </template>
       </v-toolbar>
-      <v-toolbar color="blue">
-      <v-toolbar-title>Weather selection</v-toolbar-title>
+      <v-toolbar color="indigo lighten-4">
+      <v-toolbar-title>Weather</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items >
+      <v-toolbar-items>
         <v-btn text>
           <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/">
-          Today
-        </nuxt-link>
+            Today
+          </nuxt-link>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn text>
           <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/hourly">
-          Hourly
-        </nuxt-link>
+            Hourly
+          </nuxt-link>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn text>
           <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/weekly">
             Weekly
-        </nuxt-link>
+          </nuxt-link>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -142,9 +90,6 @@ export default {
     }
   },
   methods: {
-    onCityChange(city) {
-      this.$store.dispatch('context/setCurrentCity', city)
-    },
     setMyLocationToLocalStorage(city) {
       this.$store.dispatch('context/setMyLocationToLocalStorage', city)
     },
@@ -154,9 +99,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#dropdown {
-  width: 300px;
-}
-</style>

@@ -6,18 +6,19 @@
         <nuxt />
       </div>
     </main>
-</v-app>
-
-
+    <Footer />
+  </v-app>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar'
+import Footer from '@/components/Footer'
+
 export default {
   name: 'DefaultLayout',
   components: {
-    NavBar
+    NavBar,
+    Footer
   }
-
 }
 </script>

@@ -38,7 +38,7 @@
     this.$store.dispatch('context/initCurrentCity');
     },
     computed: {
-      currentCity () {
+      currentCity() {
         return this.$store.getters['context/getCity']
       },
       weather() {
