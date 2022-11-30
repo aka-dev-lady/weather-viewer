@@ -14,7 +14,7 @@
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-    <v-row justify="center">
+      <v-row justify="center">
           <v-dialog
             v-model="dialog"
             persistent
@@ -87,7 +87,7 @@
 
     <v-list-item>
       <v-list-item-icon>
-        <v-icon>mdi-cloud-download</v-icon>
+        <v-icon>mdi-cloud</v-icon>
       </v-list-item-icon>
       <v-list-item-subtitle>{{weather?.current?.cloud}} %</v-list-item-subtitle>
     </v-list-item>

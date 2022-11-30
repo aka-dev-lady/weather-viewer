@@ -40,9 +40,9 @@ export const actions = {
   setCurrentCity({commit, dispatch}, currentCity) {
     window.sessionStorage.setItem('sessionLocation', currentCity);
     commit('setCity', currentCity);
-    dispatch('setWeather', currentCity);
+    dispatch('setCurrentWeather', currentCity);
   },
-  async setWeather({commit}, currentCity) {
+  async setCurrentWeather({commit}, currentCity) {
     try{
       let currentWeather;
       const time = Date.now();
@@ -50,7 +50,6 @@ export const actions = {
       const timeDifference = time - timeRequest;
       if(timeRequest && (timeDifference < 3600000)){
         currentWeather = JSON.parse(window.localStorage.getItem(`lastRequest${currentCity}`));
-        console.log(currentWeather);
       } else {
         currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
         window.localStorage.setItem(`lastRequest${currentCity}`, JSON.stringify(currentWeather));

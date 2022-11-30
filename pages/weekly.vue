@@ -53,7 +53,7 @@
 <script>
   export default {
     mounted() {
-    this.$store.dispatch('context/initCurrentCity');
+      this.$store.dispatch('context/initCurrentCity');
     },
     computed: {
       currentCity () {
