@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto"
+    class="mx-auto primary"
     max-width="450"
   >
     <v-list-item two-line>
@@ -17,7 +17,7 @@
 
     <v-list class="transparent">
       <v-list-item
-        v-for="item in weather?.forecast?.forecastday['0'].hour"
+        v-for="item in weatherHours"
         :key="item.time"
       >
         <v-list-item-title>{{ item.time }}</v-list-item-title>
@@ -43,6 +43,9 @@
       },
       weather() {
         return this.$store.getters['context/getWeather']
+      },
+      weatherHours() {
+        return this.weather?.forecast?.forecastday['0'].hour.filter((item, index) => index%3 === 0);
       }
     }
   }

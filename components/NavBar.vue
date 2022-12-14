@@ -1,8 +1,10 @@
 <template>
-  <v-card color="indigo lighten-4">
-    <v-card-title class="justify-center text-h2">Weather-viewer</v-card-title>
-    <v-toolbar class="toolbar-block" color="indigo" dark>
+  <v-card color="indigo lighten-2">
+    <v-card-title class="justify-center text-h2"><span>Weather</span>-<span>viewer</span></v-card-title>
+    <v-toolbar class="toolbar-block" color="teal" dark>
       <v-toolbar-title>Location</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <div>
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="450px">
           <template v-slot:activator="{ on, attrs }">
@@ -34,57 +36,24 @@
           </v-card>
         </v-dialog>
       </v-row>
+</div>
+      <v-spacer></v-spacer>
     </v-toolbar>
     <v-toolbar class="toolbar-block" color="indigo">
       <v-toolbar-title>Weather</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text>
-          <nuxt-link
-            exact
-            no-prefetch
-            active-class="active"
-            class="nav-link"
-            to="/"
+        <v-btn v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          no-prefetch
+          active-class="active"
+          class="primary"
           >
-            Today
-          </nuxt-link>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn text>
-          <nuxt-link
-            exact
-            no-prefetch
-            active-class="active"
-            class="nav-link"
-            to="/hourly"
-          >
-            Hourly
-          </nuxt-link>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn text>
-          <nuxt-link
-            exact
-            no-prefetch
-            active-class="active"
-            class="nav-link"
-            to="/weekly"
-          >
-            Weekly
-          </nuxt-link>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn text>
-          <nuxt-link
-            exact
-            no-prefetch
-            active-class="active"
-            class="nav-link"
-            to="/postMessage"
-          >
-          PostMessage
-          </nuxt-link>
+          <v-icon >
+            {{ item.icon }}
+          </v-icon>
+          {{item.title}}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -95,6 +64,28 @@
 export default {
   data: () => ({
     dialog: false,
+    items: [
+        {
+          icon: 'mdi-calendar-today',
+          title: 'Today',
+          to: '/',
+        },
+        {
+          icon: 'mdi-hours-24',
+          title: 'Hourly',
+          to: '/hourly',
+        },
+        {
+          icon: 'mdi-calendar-week',
+          title: 'Weekly',
+          to: '/weekly',
+        },
+        {
+          icon: 'mdi-message-arrow-right',
+          title: 'PostMessage',
+          to: '/postMessage',
+        },
+      ]
   }),
   computed: {
     currentCities() {
@@ -114,7 +105,7 @@ export default {
 
 <style lang="less">
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 780px) {
   .toolbar-block {
     height: auto !important;
 

@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <NavBar />
     <main align="center">
       <div class="container">

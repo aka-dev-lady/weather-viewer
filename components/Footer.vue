@@ -1,6 +1,5 @@
 <template>
   <v-footer
-    app
     dark
     padless
   >
@@ -9,7 +8,7 @@
       flat
       tile
     >
-      <v-card-title class="teal">
+      <v-card-title class="indigo">
         <strong class="subheading">Get connected with us on social networks!</strong>
         <v-spacer></v-spacer>
         <v-btn
@@ -21,12 +20,12 @@
           target="_blank"
           icon
         >
-          <v-icon size="24px" >
+          <v-icon>
             {{ icon.name }}
           </v-icon>
         </v-btn>
       </v-card-title>
-      <v-card-text class="py-2 white--text text-center">
+      <v-card-text class="py-2 text-center teal">
         {{ new Date().getFullYear() }} — <strong>Solvve</strong>
       </v-card-text>
     </v-card>

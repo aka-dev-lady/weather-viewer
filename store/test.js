@@ -1,6 +1,5 @@
 export const state = () => ({
-  cities: ['Kyiv', 'Lviv', 'Dnipropetrovsk'],
-  colors: ['red', 'blue', 'yellow']
+  cities: ['Kyiv', 'Lviv', 'Dnipropetrovsk']
 })
 
 export const getters = {
