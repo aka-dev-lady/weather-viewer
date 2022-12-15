@@ -1,23 +1,21 @@
 <template>
 <v-card
     class="mx-auto primary"
-    max-width="450"
+    max-width="500"
   >
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="text-h5">
+        <v-list-item-title class="text-h3">
           {{currentCity}}
         </v-list-item-title>
-        <v-list-item-subtitle>
-          {{weather?.current?.last_updated}}
-          {{weather?.current?.condition.text}}
+        <v-list-item-subtitle class="text-h6">
+          {{weatherCurrent?.last_updated}}
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
       <v-row justify="center">
           <v-dialog
             v-model="dialog"
-            persistent
             max-width="450px"
           >
             <template v-slot:activator="{ on, attrs }">
@@ -28,7 +26,7 @@
                 v-bind="attrs"
                 v-on="on"
               >
-              Weather in cities
+              Weather in other cities
               </v-btn>
             </template>
             <v-card>
@@ -63,16 +61,15 @@
     <v-card-text>
       <v-row align="center">
         <v-col
-          class="text-h2"
+          class="text-h1"
           cols="6"
         >
-        {{weather?.current?.temp_c}}&deg;C
+        {{weatherCurrent?.temp_c}}&deg;C
         </v-col>
         <v-col cols="6">
           <v-img
-            :src="weatherIconUrl"
+            :src="weatherCurrent?.condition?.icon"
             alt="Image"
-            width="100"
           ></v-img>
         </v-col>
       </v-row>
@@ -82,14 +79,14 @@
       <v-list-item-icon>
         <v-icon>mdi-send</v-icon>
       </v-list-item-icon>
-      <v-list-item-subtitle>{{weather?.current?.wind_kph}} km/h</v-list-item-subtitle>
+      <v-list-item-subtitle  class="text-h6">{{weatherCurrent?.wind_kph}} km/h</v-list-item-subtitle>
     </v-list-item>
 
     <v-list-item>
       <v-list-item-icon>
         <v-icon>mdi-cloud</v-icon>
       </v-list-item-icon>
-      <v-list-item-subtitle>{{weather?.current?.cloud}} %</v-list-item-subtitle>
+      <v-list-item-subtitle class="text-h6">{{weatherCurrent?.cloud}} %</v-list-item-subtitle>
     </v-list-item>
 
     <v-divider></v-divider>
@@ -112,11 +109,8 @@ export default {
     currentCities() {
       return this.$store.getters['context/cities']
     },
-    weather() {
-      return this.$store.getters['context/getWeather']
-    },
-    weatherIconUrl() {
-      return this.$store.getters['context/getWeatherIconUrl']
+    weatherCurrent() {
+      return this.$store.getters['context/getWeather'].current
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 import ServiceRequest from '../services/serviceRequest.js';
 export const state = () => ({
-  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk', 'Prague', 'Sofia', 'Warsaw'],
+  cities: ['London', 'Paris', 'Kiev', 'Berlin', 'Rome', 'Dnipropetrovsk', 'Prague', 'Sofia', 'Warsaw', 'Burgas', 'Varna'],
   city: '',
   weather: {}
 })
@@ -74,7 +74,10 @@ export const getters = {
   getWeather(state) {
     return state.weather || {}
   },
-  getWeatherIconUrl(state) {
+  getWeatherCurrentIconUrl(state) {
     return state.weather.current?.condition?.icon ? `https:${state.weather.current?.condition?.icon}` : "#"
+  },
+  getWeatherDayIconUrl(state) {
+    return state.weather.forecast?.forecastday['0']?.day?.condition?.icon ? `https:${state.weather.forecast?.forecastday['0']?.day?.condition?.icon}` : "#"
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <v-card color="indigo lighten-2">
-    <v-card-title class="justify-center text-h2"><span>Weather</span>-<span>viewer</span></v-card-title>
-    <v-toolbar class="toolbar-block" color="teal" dark>
-      <v-toolbar-title>Location</v-toolbar-title>
+    <v-card-title class="justify-center text-h3"><span>Weather</span>-<span>viewer</span></v-card-title>
+    <v-toolbar class="toolbar-block teal text-h4" dark>
+      <v-toolbar-title class="text-h5">Location</v-toolbar-title>
       <v-spacer></v-spacer>
       <div>
       <v-row justify="center">
@@ -36,20 +36,21 @@
           </v-card>
         </v-dialog>
       </v-row>
-</div>
+      </div>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-toolbar class="toolbar-block" color="indigo">
-      <v-toolbar-title>Weather</v-toolbar-title>
+      <v-toolbar-title class="text-h5">Weather</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn v-for="(item, i) in items"
-          :key="i"
+      <v-toolbar-items v-for="(item, i) in items" :key="i">
+        <v-btn
           :to="item.to"
+          exact
           no-prefetch
+          outlined
+          rounded
           active-class="active"
-          class="primary"
-          >
+          class="primary">
           <v-icon >
             {{ item.icon }}
           </v-icon>
@@ -67,7 +68,7 @@ export default {
     items: [
         {
           icon: 'mdi-calendar-today',
-          title: 'Today',
+          title: 'Now',
           to: '/',
         },
         {
