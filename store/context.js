@@ -52,8 +52,10 @@ export const actions = {
         currentWeather = JSON.parse(window.localStorage.getItem(`lastRequest${currentCity}`));
       } else {
         currentWeather = await ServiceRequest.getWeatherByCity(currentCity);
-        window.localStorage.setItem(`lastRequest${currentCity}`, JSON.stringify(currentWeather));
-        window.localStorage.setItem(currentCity, time);
+        if(currentWeather) {
+          window.localStorage.setItem(`lastRequest${currentCity}`, JSON.stringify(currentWeather));
+          window.localStorage.setItem(currentCity, time);
+        }
       }
       commit('setWeather', currentWeather);
     }catch(error) {
@@ -73,11 +75,5 @@ export const getters = {
   },
   getWeather(state) {
     return state.weather || {}
-  },
-  getWeatherCurrentIconUrl(state) {
-    return state.weather.current?.condition?.icon ? `https:${state.weather.current?.condition?.icon}` : "#"
-  },
-  getWeatherDayIconUrl(state) {
-    return state.weather.forecast?.forecastday['0']?.day?.condition?.icon ? `https:${state.weather.forecast?.forecastday['0']?.day?.condition?.icon}` : "#"
   }
 }

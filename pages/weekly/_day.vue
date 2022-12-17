@@ -49,7 +49,8 @@
         return this.$store.getters['context/getCity']
       },
       weatherForecast() {
-        return this.$store.getters['context/getWeather'].forecast?.forecastday['0']
+        const day = this.$route.params.day;
+        return this.$store.getters['context/getWeather'].forecast?.forecastday[day]
       },
       weatherHours() {
         return this.weatherForecast?.hour

@@ -4,8 +4,6 @@
     <v-toolbar class="toolbar-block teal text-h4" dark>
       <v-toolbar-title class="text-h5">Location</v-toolbar-title>
       <v-spacer></v-spacer>
-      <div>
-      <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="450px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark v-bind="attrs" v-on="on">
@@ -35,9 +33,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-row>
-      </div>
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
     </v-toolbar>
     <v-toolbar class="toolbar-block" color="indigo">
       <v-toolbar-title class="text-h5">Weather</v-toolbar-title>
@@ -47,8 +43,6 @@
           :to="item.to"
           exact
           no-prefetch
-          outlined
-          rounded
           active-class="active"
           class="primary">
           <v-icon >
@@ -106,7 +100,7 @@ export default {
 
 <style lang="less">
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 650px) {
   .toolbar-block {
     height: auto !important;
 

@@ -6,17 +6,27 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h3">
-          {{currentCity}}
+          <strong>{{currentCity}}</strong>
+        </v-list-item-title>
+        <v-list-item-title class="text-h4">
+          ({{weatherLocation?.country}})
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
     <v-list class="transparent text-h6">
       <v-list-item
-        v-for="item in weatherForecast"
-        :key="item.date"
+        v-for="(item, index) in weatherForecast"
+        :key="index"
       >
-        <v-list-item-title class="text-h6">{{ item.date }}</v-list-item-title>
+        <v-list-item-title class="text-h6">{{ item.date }}<br/>
+          <v-btn class="indigo" :to="openDay(index)">
+            <v-icon >
+              mdi-hours-24
+            </v-icon>
+            Hourly
+          </v-btn>
+        </v-list-item-title>
 
         <v-list-item-subtitle>
           <v-img
@@ -45,8 +55,13 @@
       weatherForecast() {
         return this.$store.getters['context/getWeather']?.forecast?.forecastday
       },
-      weatherIconUrl() {
-        return this.$store.getters['context/getWeatherIconUrl']
+      weatherLocation() {
+        return this.$store.getters['context/getWeather'].location
+      }
+    },
+    methods: {
+      openDay(index) {
+        return '/weekly/' + index
       }
     }
   }
